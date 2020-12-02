@@ -125,6 +125,7 @@ int main()
                 fs::current_path(cur_path);
                 cout << fs::current_path() << endl;
             }
+            break;
     }
     // Переиминование файлов и каталогов
     switch (key)
@@ -146,6 +147,12 @@ int main()
     {
         case 10:
             //сначала ввод файла, потом ввод папки, в которую перемещаем
+            fs::create_directories("nik");
+            std::ofstream("nik/file1.txt");
+            std::ofstream("nik/file2.txt");
+            fs::create_directories("nik1");
+            std::ofstream("nik1/file3.txt");
+            std::ofstream("nik1/file4.txt");
             cur_path = fs::current_path();
             std::getline(std::cin, file);
             std::getline(std::cin, dir);
@@ -154,7 +161,11 @@ int main()
             new_path /= dir;
             new_path /= file;
             fs::rename(cur_path, new_path);
+            fs::remove_all("nik");
+            fs::remove_all("nik1");
+            break;
         
     }
     return 0;
 }
+
