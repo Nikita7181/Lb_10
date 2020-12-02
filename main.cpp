@@ -8,18 +8,20 @@ using std::cin;
 namespace fs=std::filesystem;
 int main()
 {
+    fs::path cur_path, new_path;
+    std::string new_dir, comand, name, file, dir;
     int key;
     cout << "If you want to display the current folder, press 1\n" <<
-    "If you want to display the contents of a folder, press 2\n" <<
-    "If you want to create a folder (s) with a preliminary check "
-    "for the existence of a folder of the same name, press 3\n"
-    << "If you want to display the file size, press 4\n" <<
-     "If you want to display the file size, press 5\n" <<
-     "If you want to display the file size, press 6\n" <<
-     "If you want to delete the file directory, click 7\n" <<
-     "If you want to move down or down , press 8\n" <<
-     "If you want to rename the file , press 9\n" <<
-     "If you want to move a file or directory to a file , press 10\n" << endl;
+         "If you want to display the contents of a folder, press 2\n" <<
+         "If you want to create a folder (s) with a preliminary check "
+         "for the existence of a folder of the same name, press 3\n"
+         << "If you want to display the file size, press 4\n" <<
+         "If you want to display the file size, press 5\n" <<
+         "If you want to display the file size, press 6\n" <<
+         "If you want to delete the file directory, click 7\n" <<
+         "If you want to move down or down , press 8\n" <<
+         "If you want to rename the file , press 9\n" <<
+         "If you want to move a file or directory to a file , press 10\n" << endl;
     cout << "key = " ;
     cin >> key;
     // Вывод на экран текущего каталога
@@ -46,7 +48,13 @@ int main()
     switch (key)
     {
         case 3:
-            fs::create_directory("nik");
+            fs::create_directories("nik");
+            cur_path = fs::current_path();
+            cur_path /= "nik";
+            if (!(fs::exists(cur_path)))
+            {
+                fs::create_directory("nik");
+            }
             fs::remove_all("nik");
             break;
     }
@@ -99,10 +107,24 @@ int main()
     {
         case 8:
             fs::create_directories("nik");
-            std::ofstream ("nik/file.txt");
-            std::ofstream ("nik/file1.txt");
-            fs::remove_all("nik");
-            break;
+            fs::create_directories("nik1");
+            fs::create_directories("nik2");
+            fs::create_directories("nik3");
+            cout << "Type the command" << endl;
+            cin >> comand;
+            if (comand == "go_forward")
+            {
+                cur_path = fs::current_path() / "nik";
+                fs::create_directory("nik");
+                fs::current_path(cur_path);
+                cout << fs::current_path() << endl;
+            }
+            if (comand == "go_back")
+            {
+                cur_path = fs::current_path().remove_filename();
+                fs::current_path(cur_path);
+                cout << fs::current_path() << endl;
+            }
     }
     // Переиминование файлов и каталогов
     switch (key)
@@ -120,12 +142,19 @@ int main()
             break;
     }
     //Перемещиние файлов и каталогов
-            switch (key)
-            {
-                case 10:
-                    fs::create_directories("nik");
-                    break;
-            
-            }
-    return 0;
+    switch (key)
+    {
+        case 10:
+            //сначала ввод файла, потом ввод папки, в которую перемещаем
+            cur_path = fs::current_path();
+            std::getline(std::cin, file);
+            std::getline(std::cin, dir);
+            cur_path /= file;
+            new_path = fs::current_path();
+            new_path /= dir;
+            new_path /= file;
+            fs::rename(cur_path, new_path);
+        
     }
+    return 0;
+}
