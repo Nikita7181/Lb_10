@@ -15,16 +15,16 @@ int main()
     std::string new_dir, file, del_dir, c, new1, dir;
     int key;
     cout << "If you want to display the current folder, press 1\n" <<
-    "If you want to display the contents of a folder, press 2\n" <<
-    "If you want to create a folder (s) with a preliminary check "
-    "for the existence of a folder of the same name, press 3\n"
-    << "If you want to display the file size, press 4\n" <<
-     "If you want to display the file size, press 5\n" <<
-     "If you want to display the file size, press 6\n" <<
-     "If you want to delete the file directory, click 7\n" <<
-     "If you want to move down or down , press 8\n" <<
-     "If you want to rename the file , press 9\n" <<
-     "If you want to move a file or directory to a file , press 10\n" << endl;
+         "If you want to display the contents of a folder, press 2\n" <<
+         "If you want to create a folder (s) with a preliminary check "
+         "for the existence of a folder of the same name, press 3\n"
+         << "If you want to display the file size, press 4\n" <<
+         "If you want to display the file size, press 5\n" <<
+         "If you want to display the file size, press 6\n" <<
+         "If you want to delete the file directory, click 7\n" <<
+         "If you want to move down or down , press 8\n" <<
+         "If you want to rename the file , press 9\n" <<
+         "If you want to move a file or directory to a file , press 10\n" << endl;
     cout << "key = " ;
     cin >> key;
     // Вывод на экран текущего каталога
@@ -42,7 +42,7 @@ int main()
             for(auto& p: fs::directory_iterator(fs::current_path()))
             {
                 cur_p = p.path();
-               cout << cur_p.filename() << endl;
+                cout << cur_p.filename() << endl;
             }
             break;
     }
@@ -104,9 +104,9 @@ int main()
     switch (key)
     {
         case 7:
-           std::getline(cin, del_dir);
-           cur_p = fs::current_path() / del_dir;
-           fs::remove_all(cur_p);
+            std::getline(cin, del_dir);
+            cur_p = fs::current_path() / del_dir;
+            fs::remove_all(cur_p);
             break;
         
     }
@@ -125,7 +125,7 @@ int main()
                     fs::create_directory(dir);
                     fs::current_path(cur_p);
                     cout << fs::current_path() << endl;
-                    
+                    break;
             }
             switch (key2)
             {
@@ -133,6 +133,7 @@ int main()
                     cur_p = fs::current_path().remove_filename();
                     fs::current_path(cur_p);
                     cout << fs::current_path() << endl;
+                    break;
             }
             
             break;
@@ -149,11 +150,12 @@ int main()
             switch (key1)
             {
                 case 1:
-                std::getline(cin, file);
-                std::getline(cin, new1);
-                cur_p = fs::current_path() / file;
-                new1 = fs::current_path() / new1;
-                fs::rename(cur_p, new1);
+                    std::getline(cin, file);
+                    std::getline(cin, new1);
+                    cur_p = fs::current_path() / file;
+                    new1 = fs::current_path() / new1;
+                    fs::rename(cur_p, new1);
+                    break;
             }
             switch (key1)
             {
@@ -163,23 +165,25 @@ int main()
                     cur_p = fs::current_path() / dir;
                     cur_p = fs::current_path() / new1;
                     fs::rename(cur_p, new1);
-            }
-    }
-    //Перемещиние файлов и каталогов
-            switch (key)
-            {
-                case 10:
-                   // 1) вводим файл
-                   // 2) вводим папку
-                   cur_p = fs::current_path();
-                   std::getline(cin, file);
-                   std::getline(cin, dir);
-                   cur_p /= file;
-                   new_p = fs::current_path();
-                   new_p /= dir;
-                   new_p /= file;
-                   fs::rename(cur_p, new_p);
                     break;
             }
-    return 0;
+            break;
     }
+    //Перемещиние файлов и каталогов
+    switch (key)
+    {
+        case 10:
+            // 1) вводим файл
+            // 2) вводим папку
+            cur_p = fs::current_path();
+            std::getline(cin, file);
+            std::getline(cin, dir);
+            cur_p /= file;
+            new_p = fs::current_path();
+            new_p /= dir;
+            new_p /= file;
+            fs::rename(cur_p, new_p);
+            break;
+    }
+    return 0;
+}
