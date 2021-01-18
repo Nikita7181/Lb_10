@@ -30,7 +30,8 @@ int main()
     cin.ignore(1);
     
     // Вывод на экран текущего каталога
-    switch (key) {
+    switch (key) 
+    {
     
         case 1: {
             auto cur_p = fs::current_path();
@@ -54,11 +55,7 @@ int main()
     
         case 3: {
             cout << "enter a name :";
-            //
             new_dir = "c:\test";
-            char *p = new char[256];
-            //std::getline(std::cin, &p);
-            //3std::string input;
             std::getline(std::cin, new_dir);
         
             if (fs::exists(new_dir)) {
@@ -160,21 +157,26 @@ int main()
             cout << "1) file" << endl << "2) dir" << endl;
             cin >> key1;
             switch (key1) {
-                case 1:std::getline(cin, file);
+                case 1:
+                    {
+                    std::getline(cin, file);
                     std::getline(cin, new1);
                     cur_p = fs::current_path() / file;
                     new1 = fs::current_path() / new1;
                     fs::rename(cur_p, new1);
                     break;
             }
-            switch (key1) {
-                case 2:std::getline(cin, dir);
-                    std::getline(cin, new1);
-                    cur_p = fs::current_path() / dir;
-                    cur_p = fs::current_path() / new1;
-                    fs::rename(cur_p, new1);
-                    break;
+    
+            case 2: 
+                {
+                std::getline(cin, dir);
+                std::getline(cin, new1);
+                cur_p = fs::current_path() / dir;
+                cur_p = fs::current_path() / new1;
+                fs::rename(cur_p, new1);
+                break;
             }
+        }
             break;
         }
         
