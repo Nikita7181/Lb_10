@@ -30,7 +30,7 @@ int main()
     cin.ignore(1);
     
     // Вывод на экран текущего каталога
-    switch (key) 
+    switch (key)
     {
     
         case 1: {
@@ -53,9 +53,9 @@ int main()
             //Создание каталога (папки) с предварительной проверкой на существование одноимённого каталога
     
     
-        case 3: {
+        case 3:
+            {
             cout << "enter a name :";
-            new_dir = "c:\test";
             std::getline(std::cin, new_dir);
         
             if (fs::exists(new_dir)) {
@@ -69,14 +69,12 @@ int main()
         }
         
             //Вывод на экран размера файла
-    
-    
         case 4: {
             cout << "enter a file name: ";
             std::getline(std::cin, file);
             cur_p = fs::current_path() / file;
-            std::ofstream(cur_p).put('a');
-            std::cout << "File size = " << fs::file_size(cur_p) << endl;
+            if (fs::exists(cur_p))
+            {std::cout << "File size = " << fs::file_size(cur_p) << endl;}
             break;
         }
         
@@ -136,7 +134,8 @@ int main()
                     break;
                 }
     
-                case 2: {
+                case 2:
+                    {
                     cur_p = fs::current_path().remove_filename();
                     fs::current_path(cur_p);
                     cout << fs::current_path() << endl;
@@ -150,13 +149,15 @@ int main()
             // Переиминование файлов и каталогов
     
     
-        case 9: {
+        case 9:
+            {
             // сначала ввод нового имени
             // потом старого
             int key1;
             cout << "1) file" << endl << "2) dir" << endl;
             cin >> key1;
-            switch (key1) {
+            switch (key1)
+            {
                 case 1:
                     {
                     std::getline(cin, file);
@@ -167,7 +168,7 @@ int main()
                     break;
             }
     
-            case 2: 
+            case 2:
                 {
                 std::getline(cin, dir);
                 std::getline(cin, new1);
@@ -183,7 +184,8 @@ int main()
             //Перемещиние файлов и каталогов
     
     
-        case 10: {
+        case 10:
+            {
             // 1) вводим файл
             // 2) вводим папку
             cur_p = fs::current_path();
