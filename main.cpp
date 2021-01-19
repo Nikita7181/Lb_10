@@ -132,7 +132,7 @@ int main()
         case 8:
             {
             int key2;
-            cout << "1) вверх" << endl << "2) вниз" << endl;
+            cout << "1) up" << endl << "2) down" << endl;
             cin >> key2;
             switch (key2)
             {
