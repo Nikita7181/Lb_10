@@ -139,6 +139,7 @@ int main()
             {
                 case 1:
                     {
+                        cout << "enter filename: ";
                     std::getline(cin, dir);
                     cur_p = fs::current_path() / dir;
                     fs::create_directory(dir);
@@ -172,7 +173,7 @@ int main()
             {
                 case 1:
                     {
-                    cout << "enter the current name: ";    
+                    cout << "enter the current name: ";
                     std::getline(cin, file);
                     cout << "enter the new  name: ";
                     std::getline(cin, new1);
