@@ -166,11 +166,14 @@ int main()
             int key1;
             cout << "1) file" << endl << "2) dir" << endl;
             cin >> key1;
+            cin.ignore(1);
             switch (key1)
             {
                 case 1:
                     {
+                    cout << "enter the current name: ";    
                     std::getline(cin, file);
+                    cout << "enter the new  name: ";
                     std::getline(cin, new1);
                     cur_p = fs::current_path() / file;
                     new1 = fs::current_path() / new1;
@@ -180,11 +183,13 @@ int main()
     
             case 2:
                 {
+                    cout << "enter the current name: ";
                 std::getline(cin, dir);
+                cout << "enter the new  name: ";
                 std::getline(cin, new1);
                 cur_p = fs::current_path() / dir;
                 cur_p = fs::current_path() / new1;
-                fs::rename(cur_p, new1);
+                fs::rename(dir, new1);
                 break;
             }
         }
