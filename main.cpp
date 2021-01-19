@@ -96,7 +96,11 @@ int main()
     
     
         case 5: {
-           
+    
+            for (auto& p : fs::directory_iterator(fs::current_path()))
+            {
+                cout << p.path().filename() << endl;
+            }
             cout << "enter a file name:";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
@@ -110,6 +114,10 @@ int main()
             // Удаление файла
         case 6:
             {
+                for (auto& p : fs::directory_iterator(fs::current_path()))
+                {
+                    cout << p.path().filename() << endl;
+                }
             cout << "enter file name: ";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
@@ -134,15 +142,15 @@ int main()
             int key2;
             cout << "1) up" << endl << "2) down" << endl;
             cin >> key2;
+                for (auto& p : fs::directory_iterator(fs::current_path()))
+                {
+                    cout << p.path().filename() << endl;
+                }
             cin.ignore(1);
             switch (key2)
             {
                 case 1:
                     {
-                        for (auto& p : fs::directory_iterator(fs::current_path()))
-                        {
-                            cout << p.path().filename() << endl;
-                        }
                         cout << "enter filename: ";
                     std::getline(cin, dir);
                     fs::current_path(dir);
@@ -170,6 +178,10 @@ int main()
             int key1;
             cout << "1) file" << endl << "2) dir" << endl;
             cin >> key1;
+                for (auto& p : fs::directory_iterator(fs::current_path()))
+                {
+                    cout << p.path().filename() << endl;
+                }
             cin.ignore(1);
             switch (key1)
             {
