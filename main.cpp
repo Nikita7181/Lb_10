@@ -139,15 +139,13 @@ int main()
             {
                 case 1:
                     {
-                         for (auto& p : fs::directory_iterator(fs::current_path()))
+                        for (auto& p : fs::directory_iterator(fs::current_path()))
                         {
                             cout << p.path().filename() << endl;
                         }
                         cout << "enter filename: ";
                     std::getline(cin, dir);
-                    cur_p = fs::current_path() / dir;
-                    fs::create_directory(dir);
-                    fs::current_path(cur_p);
+                    fs::current_path(dir);
                     cout << fs::current_path() << endl;
                     break;
                 }
