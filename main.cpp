@@ -64,8 +64,6 @@ int main()
         }
         
             //Создание каталога (папки) с предварительной проверкой на существование одноимённого каталога
-    
-    
         case 3:
             {
             cout << "enter a name :";
@@ -93,8 +91,6 @@ int main()
         }
         
             // Копирование файла
-    
-    
         case 5: {
     
             for (auto& p : fs::directory_iterator(fs::current_path()))
@@ -203,8 +199,8 @@ int main()
                 std::getline(cin, dir);
                 cout << "enter the new  name: ";
                 std::getline(cin, new1);
-                cur_p = fs::current_path() / dir;
-                cur_p = fs::current_path() / new1;
+                cur_p /= dir;
+                cur_p /= new1;
                 fs::rename(dir, new1);
                 break;
             }
@@ -217,16 +213,22 @@ int main()
             {
             // 1) вводим файл
             // 2) вводим папку
+                for (auto& p : fs::directory_iterator(fs::current_path()))
+                {
+                    cout << p.path().filename() << endl;
+                }
             cur_p = fs::current_path();
+            new_p = fs::current_path();
+            cout << "enter file name: ";
             std::getline(cin, file);
+            cout << "enter the folder name: ";
             std::getline(cin, dir);
             cur_p /= file;
-            new_p = fs::current_path();
             new_p /= dir;
             new_p /= file;
             fs::rename(cur_p, new_p);
             break;
-        }
+    }
     }
     
     return 0;
