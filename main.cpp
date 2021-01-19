@@ -96,7 +96,7 @@ int main()
     
     
         case 5: {
-            //сначала ввод файла, который копируем, потом ввод названия нового файла
+           
             cout << "enter a file name:";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
