@@ -11,7 +11,7 @@ namespace fs=std::filesystem;
 
 int main()
 {
-    fs::path cur_p, copy, new_p;
+    fs::path cur_p,cur_p1, copy, new_p;
     std::string new_dir, file, del_dir, c, new1, dir;
     int key;
     cout << "If you want to display the current folder, press 1\n" <<
@@ -29,11 +29,23 @@ int main()
     cin >> key;
     cin.ignore(1);
     
-    // Вывод на экран текущего каталога
     switch (key)
     {
-    
-        case 1: {
+        case 0:
+        {
+            // для создания текстовых файлов и тд (чтобы провреить функцию copy, size и тд)
+            std::string filename;
+            std::ofstream f1;
+            std::cout << "enter name: ";
+            std::getline(std::cin, filename);
+            f1.open(filename);
+            f1.put('a');
+            f1.close();
+            break;
+        }
+            // Вывод на экран текущего каталога
+        case 1:
+            {
             auto cur_p = fs::current_path();
             cout << "current path:" << cur_p << endl;
             break;
@@ -43,7 +55,8 @@ int main()
     
     
         case 2: {
-            for (auto &p: fs::directory_iterator(fs::current_path())) {
+            for (auto &p: fs::directory_iterator(fs::current_path()))
+            {
                 cur_p = p.path();
                 cout << cur_p.filename() << endl;
             }
@@ -69,7 +82,8 @@ int main()
         }
         
             //Вывод на экран размера файла
-        case 4: {
+        case 4:
+            {
             cout << "enter a file name: ";
             std::getline(std::cin, file);
             cur_p = fs::current_path() / file;
@@ -86,20 +100,17 @@ int main()
             cout << "enter a file name:";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
-            copy = fs::current_path();
+            cout << "enter a file name:";
             std::getline(cin, c);
-            c = copy;
-            fs::copy_file(cur_p, c);
-            for (auto &p: fs::directory_iterator("nik")) {
-                std::cout << p.path() << endl;
-            }
+           copy = fs::current_path() / c;
+            fs::copy_file(cur_p, copy);
             break;
         }
         
             // Удаление файла
-    
-    
-        case 6: {
+        case 6:
+            {
+            std::cout << "enter file name: ";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
             remove(cur_p);
@@ -108,8 +119,8 @@ int main()
         }
         
             // Удаление каталога с файлами
-    
         case 7: {
+            std::cout<< "enter file name: ";
             std::getline(cin, del_dir);
             cur_p = fs::current_path() / del_dir;
             fs::remove_all(cur_p);
@@ -118,14 +129,15 @@ int main()
         }
         
             // Перемещение по каталогам
-    
-    
-        case 8: {
+        case 8:
+            {
             int key2;
             cout << "1) вверх" << endl << "2) вниз" << endl;
             cin >> key2;
-            switch (key2) {
-                case 1: {
+            switch (key2)
+            {
+                case 1:
+                    {
                     std::getline(cin, dir);
                     cur_p = fs::current_path() / dir;
                     fs::create_directory(dir);
@@ -147,8 +159,6 @@ int main()
         }
         
             // Переиминование файлов и каталогов
-    
-    
         case 9:
             {
             // сначала ввод нового имени
@@ -182,8 +192,6 @@ int main()
         }
         
             //Перемещиние файлов и каталогов
-    
-    
         case 10:
             {
             // 1) вводим файл
