@@ -134,6 +134,7 @@ int main()
             int key2;
             cout << "1) up" << endl << "2) down" << endl;
             cin >> key2;
+            cin.ignore(1);
             switch (key2)
             {
                 case 1:
