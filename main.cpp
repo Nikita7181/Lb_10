@@ -20,9 +20,9 @@ int main()
          "for the existence of a folder of the same name, press 3\n"
          << "If you want to display the file size, press 4\n" <<
          "If you want to display the file size, press 5\n" <<
-         "If you want to display the file size, press 6\n" <<
+         "If you want to delete the file, click 6\n" <<
          "If you want to delete the file directory, click 7\n" <<
-         "If you want to move down or down , press 8\n" <<
+         "If you want to move up or down , press 8\n" <<
          "If you want to rename the file , press 9\n" <<
          "If you want to move a file or directory to a file , press 10\n" << endl;
     cout << "key = " ;
@@ -173,8 +173,8 @@ int main()
             // Переиминование файлов и каталогов
         case 9:
             {
-            // сначала ввод нового имени
-            // потом старого
+            // сначала ввод старого имени
+            // потом нового
             int key1;
             cout << "1) file" << endl << "2) dir" << endl;
             cin >> key1;
@@ -192,8 +192,8 @@ int main()
                     cout << "enter the new  name: ";
                     std::getline(cin, new1);
                     cur_p = fs::current_path() / file;
-                    new1 = fs::current_path() / new1;
-                    fs::rename(cur_p, new1);
+                    new_p = fs::current_path() / new1;
+                    fs::rename(cur_p, new_p);
                     break;
             }
     
