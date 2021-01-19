@@ -36,8 +36,8 @@ int main()
             // для создания текстовых файлов и тд (чтобы провреить функцию copy, size и тд)
             std::string filename;
             std::ofstream f1;
-            std::cout << "enter name: ";
-            std::getline(std::cin, filename);
+            cout << "enter name: ";
+            std::getline(cin, filename);
             f1.open(filename);
             f1.put('a');
             f1.close();
@@ -69,7 +69,7 @@ int main()
         case 3:
             {
             cout << "enter a name :";
-            std::getline(std::cin, new_dir);
+            std::getline(cin, new_dir);
         
             if (fs::exists(new_dir)) {
                 cout << "this directory already exists" << endl;
@@ -85,10 +85,10 @@ int main()
         case 4:
             {
             cout << "enter a file name: ";
-            std::getline(std::cin, file);
+            std::getline(cin, file);
             cur_p = fs::current_path() / file;
             if (fs::exists(cur_p))
-            {std::cout << "File size = " << fs::file_size(cur_p) << endl;}
+            {cout << "File size = " << fs::file_size(cur_p) << endl;}
             break;
         }
         
@@ -110,7 +110,7 @@ int main()
             // Удаление файла
         case 6:
             {
-            std::cout << "enter file name: ";
+            cout << "enter file name: ";
             std::getline(cin, file);
             cur_p = fs::current_path() / file;
             remove(cur_p);
@@ -120,7 +120,7 @@ int main()
         
             // Удаление каталога с файлами
         case 7: {
-            std::cout<< "enter file name: ";
+            cout<< "enter file name: ";
             std::getline(cin, del_dir);
             cur_p = fs::current_path() / del_dir;
             fs::remove_all(cur_p);
