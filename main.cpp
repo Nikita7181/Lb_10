@@ -172,7 +172,7 @@ int main()
             // сначала ввод старого имени
             // потом нового
             int key1;
-            cout << "1) file" << endl << "2) dir" << endl;
+            cout << "1) file" << endl << "2) folder" << endl;
             cin >> key1;
                 for (auto& p : fs::directory_iterator(fs::current_path()))
                 {
@@ -199,8 +199,6 @@ int main()
                 std::getline(cin, dir);
                 cout << "enter the new  name: ";
                 std::getline(cin, new1);
-                cur_p /= dir;
-                cur_p /= new1;
                 fs::rename(dir, new1);
                 break;
             }
@@ -211,8 +209,13 @@ int main()
             //Перемещиние файлов и каталогов
         case 10:
             {
-            // 1) вводим файл
-            // 2) вводим папку
+            // 1) вводим путь, в котором будем работать  
+            // 2) вводим файл
+            // 3) вводим папку
+            std::string path;
+            std::cout << "enter the path you want to work in: ";
+            std::getline(std::cin,path);
+           fs::current_path(path);
                 for (auto& p : fs::directory_iterator(fs::current_path()))
                 {
                     cout << p.path().filename() << endl;
