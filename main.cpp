@@ -14,7 +14,8 @@ int main()
     fs::path cur_p,cur_p1, copy, new_p;
     std::string new_dir, file, del_dir, c, new1, dir;
     int key;
-    cout << "If you want to display the current folder, press 1\n" <<
+    cout << "If you want to create a \"txt\" file, then press 0\n" <<
+          "If you want to display the current folder, press 1\n" <<
          "If you want to display the contents of a folder, press 2\n" <<
          "If you want to create a folder (s) with a preliminary check "
          "for the existence of a folder of the same name, press 3\n"
@@ -209,7 +210,7 @@ int main()
             //Перемещиние файлов и каталогов
         case 10:
             {
-            // 1) вводим путь, в котором будем работать  
+            // 1) вводим путь, в котором будем работать
             // 2) вводим файл
             // 3) вводим папку
             std::string path;
